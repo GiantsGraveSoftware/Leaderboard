@@ -1,0 +1,9 @@
+# ignore build outputs and secrets
+bin/
+obj/
+out/
+*.log
+*.user
+.env
+/.vscode/
+node_modules/
