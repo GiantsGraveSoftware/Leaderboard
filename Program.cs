@@ -12,12 +12,10 @@ builder.WebHost.ConfigureKestrel(options =>
     });
 });
 
-Debug.Print(Utilities.IsValidApiKey("wrong key").ToString());
-Debug.Print(Utilities.IsValidApiKey("My New Api Key").ToString());
-
 var app = builder.Build();
 
 app.WebLeaderboard();
 app.WebUserCreate();
+app.MapUserLogin();
 
 app.Run();
