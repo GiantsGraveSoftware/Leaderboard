@@ -12,3 +12,7 @@ Invoke-WebRequest -Uri https://localhost:5000/adduser -Method POST -Body '{"ApiK
 
 # Demonstrate a pre hashed user
 Invoke-WebRequest -Uri https://localhost:5000/adduser -Method POST -Body '{"ApiKey":"My New Api Key","name":"Pre Hashed Test","hashemail":"My Pre-Hashed email string","hashpassword":"My Pre-Hashed password string"}' -ContentType "application/json"
+
+# Login without password for error, with password to get JSON response
+Invoke-WebRequest -Uri https://localhost:5000/userlogin -Method POST -Body '{"ApiKey":"My New Api Key","email":"John@beatles.com","password":"WrongPassword"}' -ContentType "application/json"
+Invoke-WebRequest -Uri https://localhost:5000/userlogin -Method POST -Body '{"ApiKey":"My New Api Key","email":"John@beatles.com","password":"Lennon"}' -ContentType "application/json"
