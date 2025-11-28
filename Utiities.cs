@@ -5,6 +5,32 @@ public static class Utilities
         return apiKey == AppConfig.ApiKey && !string.IsNullOrEmpty(apiKey);
     }
 
+    public static string GenerateSalt(int size = 32)
+    {
+        byte[] saltBytes = new byte[size];
+        using var rng = System.Security.Cryptography.RandomNumberGenerator.Create();
+        rng.GetBytes(saltBytes);
+
+        return Convert.ToBase64String(saltBytes);
+    }
+
+    public static string? HashString(string? ToHash)
+    {
+        if (ToHash is null)
+            return null;
+
+        using var sha256 = System.Security.Cryptography.SHA256.Create();
+        string ToHashAndKey = ToHash + AppConfig.ApiKey;
+        byte[] bytes = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(ToHash));
+
+        var builder = new System.Text.StringBuilder();
+        foreach (var b in bytes)
+            builder.Append(b.ToString("x2"));
+
+        string hash = builder.ToString();
+        return hash;
+    }
+
     public static void SetupDatabase()
     {
         SetupUsers();

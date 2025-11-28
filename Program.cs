@@ -18,5 +18,6 @@ Debug.Print(Utilities.IsValidApiKey("My New Api Key").ToString());
 var app = builder.Build();
 
 app.WebLeaderboard();
+app.WebUserCreate();
 
 app.Run();
