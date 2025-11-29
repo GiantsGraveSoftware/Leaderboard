@@ -11,8 +11,6 @@ public static class UserUpdate
                 return Results.BadRequest(new { error = "User IDs are required to update." });
             else
             {
-                string? hashEmail = user.HashEmail ?? Utilities.HashString(user.Email);
-
                 int rowsAffected;
 
                 using var connection = new Microsoft.Data.Sqlite.SqliteConnection(AppConfig.connectionString);
