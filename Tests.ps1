@@ -16,3 +16,7 @@ Invoke-WebRequest -Uri https://localhost:5000/adduser -Method POST -Body '{"ApiK
 # Login without password for error, with password to get JSON response
 Invoke-WebRequest -Uri https://localhost:5000/userlogin -Method POST -Body '{"ApiKey":"My New Api Key","email":"John@beatles.com","password":"WrongPassword"}' -ContentType "application/json"
 Invoke-WebRequest -Uri https://localhost:5000/userlogin -Method POST -Body '{"ApiKey":"My New Api Key","email":"John@beatles.com","password":"Lennon"}' -ContentType "application/json"
+
+# Update user - change name from John to Jack and update their email address
+Invoke-WebRequest -Uri https://localhost:5000/userupdate -Method POST -Body '{"ApiKey":"My New Api Key","ID":1, "Name":"Jack"}' -ContentType "application/json"
+Invoke-WebRequest -Uri https://localhost:5000/userlogin -Method POST -Body '{"ApiKey":"My New Api Key","email":"John@beatles.com","password":"Lennon"}' -ContentType "application/json"
