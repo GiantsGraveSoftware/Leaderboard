@@ -1,7 +1,6 @@
-using Microsoft.Data.Sqlite;
-public static class EndpointUserLogin
+public static class UserLogin
 {
-    public static void MapUserLogin(this WebApplication app)
+    public static void WebUserLogin(this WebApplication app)
     {
         app.MapPost("/userlogin", (User user) =>
         {
@@ -16,7 +15,7 @@ public static class EndpointUserLogin
                 string? salt = Utilities.GetSalt(userId);
                 string hashPassword = user.HashPassword ?? Utilities.HashString(hashEmail.ToLower() + salt + user.Password) ?? "";
 
-                using var connection = new SqliteConnection(AppConfig.connectionString);
+                using var connection = new Microsoft.Data.Sqlite.SqliteConnection(AppConfig.connectionString);
                 connection.Open();
                 using var cmd = connection.CreateCommand();
                 cmd.CommandText = @"

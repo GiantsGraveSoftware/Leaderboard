@@ -16,6 +16,6 @@ var app = builder.Build();
 
 app.WebLeaderboard();
 app.WebUserCreate();
-app.MapUserLogin();
+app.WebUserLogin();
 
 app.Run();
